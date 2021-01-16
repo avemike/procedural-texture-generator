@@ -1,0 +1,3 @@
+*.bmp
+cmake-build-debug/
+.idea/
