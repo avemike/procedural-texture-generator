@@ -52,3 +52,5 @@ void saveBMP(const char *bmpFileOut, BMP bmpInstance) {
     }
     fclose(fp);
 }
+
+
