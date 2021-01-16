@@ -7,7 +7,7 @@
 #pragma pack(push, 1)
 typedef struct bmp {
     BmpHeader header;
-    Pixel data[];
+    Pixel *data;
 }
 #ifdef __linux__
     __attribute__((__packed__, aligned(1)))

@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../types/bmp.h"
-#include "../types/memDescriptor.h"
 
-
-MemDescriptor *loadBMP(const char *bmpFileIn) {
+BMP *loadBMP(const char *bmpFileIn) {
     FILE *fp = NULL;
     BmpHeader bH;
     Pixel *pixels = NULL;
@@ -26,26 +24,26 @@ MemDescriptor *loadBMP(const char *bmpFileIn) {
         fseek(fp, padding, SEEK_CUR);
     }
 
-    // Create MemDescriptor instance
-    MemDescriptor *output = (MemDescriptor *) malloc(sizeof(MemDescriptor));
-    output->pixels = pixels;
+    // Create BMP instance
+    BMP *output = (BMP *) malloc(sizeof(BMP));
+    output->data = pixels;
     output->header = bH;
     fclose(fp);
     return output;
 }
 
-void saveBMP(const char *bmpFileOut, MemDescriptor m) {
+void saveBMP(const char *bmpFileOut, BMP bmpInstance) {
     FILE *fp = NULL;
 
     fp = fopen(bmpFileOut, "wb");
     int pad = 0;
 
-    fwrite(&m.header, m.header.dataOffset, 1, fp);
-    int padding = abs((m.header.pixWidth * 3) % 4);
+    fwrite(&bmpInstance.header, bmpInstance.header.dataOffset, 1, fp);
+    int padding = abs((bmpInstance.header.pixWidth * 3) % 4);
 
-    for (int y = 0; y < m.header.pixHeight; y++) {
-        for (int x = 0; x < m.header.pixWidth; x++) {
-            fwrite(&m.pixels[(x + m.header.pixWidth * y)], 1, 3, fp);
+    for (int y = 0; y < bmpInstance.header.pixHeight; y++) {
+        for (int x = 0; x < bmpInstance.header.pixWidth; x++) {
+            fwrite(&bmpInstance.data[(x + bmpInstance.header.pixWidth * y)], 1, 3, fp);
         }
         for (int i = 0; i < padding; i++) {
             fwrite(&pad, 1, 1, fp);

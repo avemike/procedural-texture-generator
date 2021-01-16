@@ -1,10 +1,10 @@
-#include "../types/memDescriptor.h"
+#include "../types/bmp.h"
 
 #ifndef _BMP_MODULE_
 #define _BMP_MODULE_
 
-MemDescriptor *loadBMP(const char *bmpFileIn);
+BMP *loadBMP(const char *bmpFileIn);
 
-void saveBMP(const char *bmpFileOut, MemDescriptor m);
+void saveBMP(const char *bmpFileOut, BMP bmpInstance);
 
 #endif

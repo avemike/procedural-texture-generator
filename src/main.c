@@ -1,6 +1,7 @@
 #include "bmp.h"
+#include "types/bmp.h"
 
 int main(void) {
-    MemDescriptor *obrazek = loadBMP("obrazek.bmp");
+    BMP *obrazek = loadBMP("obrazek.bmp");
     saveBMP("zapisany.bmp", *obrazek);
 }

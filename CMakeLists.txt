@@ -11,6 +11,5 @@ add_executable(projekt
         src/modules/bmp.h
         src/types/bmp.h
         src/types/bmpHeader.h
-        src/types/memDescriptor.h
         src/types/pixel.h
         src/main.c)
