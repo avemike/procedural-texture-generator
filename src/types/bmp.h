@@ -6,7 +6,7 @@
 
 #pragma pack(push, 1)
 typedef struct bmp {
-    BmpHeader header;
+    BmpHeader *header;
     Pixel *data;
 }
 #ifdef __linux__

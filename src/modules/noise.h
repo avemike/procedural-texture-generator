@@ -5,6 +5,6 @@
 #ifndef PROJEKT_NOISE_H
 #define PROJEKT_NOISE_H
 
-BMP* createNoise(int width, int height);
+Pixel *createNoise(int width, int height);
 
 #endif //PROJEKT_NOISE_H

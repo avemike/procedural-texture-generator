@@ -5,8 +5,10 @@
 
 BMP *loadBMP(const char *bmpFileIn);
 
-void saveBMP(const char *bmpFileOut, BMP bmpInstance);
+void saveBMP(const char *bmpFileOut, BMP *bmpInstance);
 
-void generateBMPHeader(BMP *image, unsigned int width, unsigned int height);
+BmpHeader *generateBMPHeader(unsigned int width, unsigned int height);
+
+BMP *generateBMPFile(Pixel *data, unsigned int width, unsigned int height);
 
 #endif
