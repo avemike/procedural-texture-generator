@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "../types/bmp.h"
+#include "bmp.h"
 //
 // Created by avemike on 16.01.2021.
 //
@@ -7,16 +7,7 @@
 BMP* createNoise(int width, int height) {
     // Init image header
     BMP* image = (BMP*)malloc(sizeof (BMP));
-    image->header.pixWidth = width;
-    image->header.pixHeight = height;
-    image->header.dataOffset = 54;
-    image->header.id[0] = 'B';
-    image->header.id[1] = 'M';
-    image->header.fileSize = width * height * 3 + 54;
-    image->header.DIBHeaderSize = 40;
-    image->header.bitsPerPixel = 24;
-    image->header.biImageByteSize = width * height * 3;
-
+    generateBMPHeader(image, width, height);
     image->data = (Pixel*)malloc(sizeof(Pixel) * width * height);
 
     for(int row = 0; row < height; row++) {

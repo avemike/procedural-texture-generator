@@ -53,4 +53,17 @@ void saveBMP(const char *bmpFileOut, BMP bmpInstance) {
     fclose(fp);
 }
 
+void generateBMPHeader(BMP *image, unsigned int width, unsigned int height) {
+    image->header.pixWidth = width;
+    image->header.pixHeight = height;
+    image->header.dataOffset = 54;
+    image->header.id[0] = 'B';
+    image->header.id[1] = 'M';
+    image->header.fileSize = width * height * 3 + 54;
+    image->header.DIBHeaderSize = 40;
+    image->header.bitsPerPixel = 24;
+    image->header.biImageByteSize = width * height * 3;
+}
+
+
 
