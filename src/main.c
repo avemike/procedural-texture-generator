@@ -4,7 +4,9 @@
 //#include "types/bmp.h"
 
 int main(void) {
-    Pixel *texture = createBluredNoise(200, 200, 8);
-    BMP *obrazek = generateBMPFile(texture, 200, 200);
+    int width, height;
+    width = height = 200;
+    Pixel *texture = createBluredNoise(width, height, 2);
+    BMP *obrazek = generateBMPFile(texture, width, height);
     saveBMP("zapisany.bmp", obrazek);
 }

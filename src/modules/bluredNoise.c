@@ -6,38 +6,39 @@
 #include "bmp.h"
 #include "noise.h"
 
-double calcHue(Pixel *pixel) {
-    return (double) (pixel->red + pixel->blue + pixel->green) / 3;
-}
 
+
+// x1 < x2 and y1 < y2. pixelsNum gets modified
+int calcVal(int x1, int y1, int x2, int y2, int width, const Pixel* data, int *pixelsNum) {
+    int val = 0;
+    for (int y = y1; y <= y2; y++) {
+        for (int x = x1; x <= x2; x++) {
+            (*pixelsNum)++;
+            val += data[x + y * width].green;
+        }
+    }
+    return val;
+}
 // Variable Factor adjust how blured is image
 Pixel *createBluredNoise(int width, int height, int blur) {
     Pixel *data = createNoise(width, height);
 
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
+            int x1 = (x + width - blur) % width;
+            int x2 = (x + width + blur) % width;
+            int y1 = (y + height - blur) % height;
+            int y2 = (y + height + blur) % height;
 
-            int left = (x + width - 1) % width;
-            int bottom = (y + height - 1) % height;
+            int val = 0, pixelsNum = 0;
 
-            int right = (x + width + 1) % width;
-            int top = (y + height + 1) % height;
+            val += calcVal(x, y, x2, y2, width, data, &pixelsNum);
+            val += calcVal(x1, y, x, y2, width, data, &pixelsNum);
+            val += calcVal(x, y1, x2, y, width, data, &pixelsNum);
+            val += calcVal(x1, y1, x, y, width, data, &pixelsNum);
 
-            int val;
-
-            // Assume green == blue == red
-            val += data[left + y*width].green;
-            val += data[x + y*width].green;
-            val += data[right + y*width].green;
-            val += data[left + top*width].green;
-            val += data[x + top*width].green;
-            val += data[right + top*width].green;
-            val += data[left + bottom*width].green;
-            val += data[x + bottom*width].green;
-            val += data[right + bottom*width].green;
-
-            val = (val / 9) % 256;
-            data[x + y*width].green = data[x + y*width].blue = data[x + y*width].red = val;
+            val = (val / pixelsNum) % 256;
+            data[x + y * width].green = data[x + y * width].blue = data[x + y * width].red = val;
         }
     }
 
