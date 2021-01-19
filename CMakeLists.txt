@@ -12,4 +12,4 @@ add_executable(projekt
         src/types/bmp.h
         src/types/bmpHeader.h
         src/types/pixel.h
-        src/main.c src/modules/noise.h src/modules/noise.c)
+        src/main.c src/modules/noise.h src/modules/noise.c src/modules/bluredNoise.c src/modules/bluredNoise.h)
