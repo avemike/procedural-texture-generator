@@ -7,5 +7,7 @@
 #define PROJEKT_SMOOTHNOISE_H
 
 Pixel *createSmoothNoise(int width, int height, int factor);
+double smoothPixel(double x, double y, int noiseWidth, int noiseHeight, Pixel *noise);
+double *smoothNoisePattern(int width, int height, double size);
 
 #endif //PROJEKT_SMOOTHNOISE_H
