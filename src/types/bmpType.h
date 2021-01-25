@@ -1,5 +1,5 @@
-#include "bmpHeader.h"
-#include "pixel.h"
+#include "bmpHeaderType.h"
+#include "pixelType.h"
 
 #ifndef BMP_H_
 #define BMP_H_

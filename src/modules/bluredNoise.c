@@ -1,12 +1,9 @@
 //
 // Created by avemike on 17.01.2021.
 //
-#include <stdlib.h>
-#include <stdio.h>
-#include "bmp.h"
-#include "noise.h"
-
-
+#include "bmpType.h"
+#include "pixelType.h"
+#include "../headers/noise.h"
 
 // x1 < x2 and y1 < y2. pixelsNum gets modified
 int calcVal(int x1, int y1, int x2, int y2, int width, const Pixel* data, int *pixelsNum) {

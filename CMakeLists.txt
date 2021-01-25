@@ -8,17 +8,17 @@ include_directories(src/types)
 
 add_executable(projekt
         src/modules/bmp.c
-        src/modules/bmp.h
-        src/types/bmp.h
-        src/types/bmpHeader.h
-        src/types/pixel.h
+        src/headers/bmp.h
+        src/types/bmpType.h
+        src/types/bmpHeaderType.h
+        src/types/pixelType.h
         src/main.c
-        src/modules/noise.h
+        src/headers/noise.h
         src/modules/noise.c
         src/modules/bluredNoise.c
-        src/modules/bluredNoise.h
+        src/headers/bluredNoise.h
         src/modules/smoothNoise.c
-        src/modules/smoothNoise.h
-        src/modules/turbulence.h
+        src/headers/smoothNoise.h
+        src/headers/turbulence.h
         src/modules/turbulence.c
-        src/modules/texture.c src/modules/texture.h)
+        src/modules/texture.c src/headers/texture.h)

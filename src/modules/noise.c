@@ -1,13 +1,14 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "bmp.h"
-
+#include "../headers/bmp.h"
+#include "pixelType.h"
 //
 // Created by avemike on 16.01.2021.
 //
 
 
+// Return array of Pixels
 Pixel *createNoise(int width, int height) {
     Pixel *data = (Pixel *) malloc(sizeof(Pixel) * width * height);
 
@@ -28,6 +29,7 @@ Pixel *createNoise(int width, int height) {
     return data;
 }
 
+
 // Returns array of doubles, each equal (0..1)
 double *noisePattern(int width, int height) {
     double *texturePattern = (double *) malloc(width * height * sizeof(double));
@@ -42,3 +44,4 @@ double *noisePattern(int width, int height) {
 
     return texturePattern;
 }
+

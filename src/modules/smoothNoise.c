@@ -4,10 +4,10 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include "smoothNoise.h"
-#include "noise.h"
+#include "../headers/smoothNoise.h"
+#include "../headers/noise.h"
 
-double smoothPixel(double x, double y, int noiseWidth, int noiseHeight, Pixel *noise) {
+double smooth(double *texture, double x, double y, int noiseWidth, int noiseHeight) {
     double fractionX = x - (int) x;
     double fractionY = y - (int) y;
 
@@ -20,30 +20,12 @@ double smoothPixel(double x, double y, int noiseWidth, int noiseHeight, Pixel *n
     int y2 = (y1 + noiseHeight - 1) % noiseHeight;
 
     double value = 0.0;
-    value += fractionX * fractionY * (noise[y1 * noiseWidth + x1].green);
-    value += (1 - fractionX) * fractionY * (noise[y1 * noiseWidth + x2].green);
-    value += fractionX * (1 - fractionY) * (noise[y2 * noiseWidth + x1].green);
-    value += (1 - fractionX) * (1 - fractionY) * (noise[y2 * noiseWidth + x2].green);
+    value += fractionX * fractionY * (texture[y1 * noiseWidth + x1]);
+    value += (1 - fractionX) * fractionY * (texture[y1 * noiseWidth + x2]);
+    value += fractionX * (1 - fractionY) * (texture[y2 * noiseWidth + x1]);
+    value += (1 - fractionX) * (1 - fractionY) * (texture[y2 * noiseWidth + x2]);
 
     return value;
-}
-
-
-Pixel *createSmoothNoise(int width, int height, int factor) {
-    Pixel *temp = createNoise(width, height);
-    Pixel *data = (Pixel *) malloc(sizeof(Pixel) * width * height);
-    memcpy(data, temp, (sizeof(Pixel) * width * height));
-
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            data[x + width * y].green =
-            data[x + width * y].blue =
-            data[x + width * y].red =
-                    (unsigned char) (smoothPixel((double) x / factor, (double) y / factor, width, height, temp));
-        }
-    }
-
-    return data;
 }
 
 double *smoothNoisePattern(int width, int height, double size) {

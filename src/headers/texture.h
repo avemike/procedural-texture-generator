@@ -1,7 +1,7 @@
 //
 // Created by avemike on 25.01.2021.
 //
-#include "pixel.h"
+#include "pixelType.h"
 
 #ifndef PROJEKT_TEXTURE_H
 #define PROJEKT_TEXTURE_H

@@ -3,7 +3,7 @@
 //
 
 #include <stdlib.h>
-#include "texture.h"
+#include "../headers/texture.h"
 
 Pixel *generateBMPTexture(double *pattern, int width, int height) {
     Pixel *data = (Pixel *) malloc(sizeof(Pixel) * width * height);
@@ -12,7 +12,7 @@ Pixel *generateBMPTexture(double *pattern, int width, int height) {
         data[i].blue =
         data[i].green =
         data[i].red =
-                (unsigned char) (pattern[i] * 256);
+                (unsigned char) (pattern[i]);
     }
 
     return data;

@@ -1,4 +1,4 @@
-#include "../types/bmp.h"
+#include "bmpType.h"
 
 #ifndef _BMP_MODULE_
 #define _BMP_MODULE_
