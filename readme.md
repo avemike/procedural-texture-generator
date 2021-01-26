@@ -1,7 +1,7 @@
 ## WIP: procedural texture generator
 
 ### Features Todo:
-- [ ] Turbulence
+- [x] Turbulence
 - [ ] Clouds
 - [ ] Marble
 - [ ] Wood

@@ -5,8 +5,8 @@
 #include <stdlib.h>
 #include "../headers/texture.h"
 
-Pixel *generateBMPTexture(double *pattern, int width, int height) {
-    Pixel *data = (Pixel *) malloc(sizeof(Pixel) * width * height);
+RGB *generateBMPTexture(double *pattern, int width, int height) {
+    RGB *data = (RGB *) malloc(sizeof(RGB) * width * height);
 
     for (int i = 0; i < width * height; i++) {
         data[i].blue =

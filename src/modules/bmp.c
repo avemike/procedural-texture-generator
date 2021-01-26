@@ -5,7 +5,7 @@
 BMP *loadBMP(const char *bmpFileIn) {
     FILE *fp = NULL;
     BmpHeader bH;
-    Pixel *pixels = NULL;
+    RGB *pixels = NULL;
 
     fp = fopen(bmpFileIn, "rb");
 
@@ -13,7 +13,7 @@ BMP *loadBMP(const char *bmpFileIn) {
     fread(&bH, 54, 1, fp); // read full header
 
     // Read bmp
-    pixels = malloc(sizeof(Pixel) * bH.pixWidth * bH.pixHeight);
+    pixels = malloc(sizeof(RGB) * bH.pixWidth * bH.pixHeight);
 
     fseek(fp, bH.dataOffset, SEEK_SET);
     int padding = abs((bH.pixWidth * 3) % 4);
@@ -69,7 +69,7 @@ BmpHeader *generateBMPHeader(unsigned int width, unsigned int height) {
     return header;
 }
 
-BMP *generateBMPFile(Pixel *data, unsigned int width, unsigned int height) {
+BMP *generateBMPFile(RGB *data, unsigned int width, unsigned int height) {
     BMP *image = (BMP *) malloc(sizeof(BMP));
     image->header = generateBMPHeader(width, height);
     image->data = data;

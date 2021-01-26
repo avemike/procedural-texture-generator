@@ -1,5 +1,5 @@
 #include "bmpHeaderType.h"
-#include "pixelType.h"
+#include "rgbType.h"
 
 #ifndef BMP_H_
 #define BMP_H_
@@ -7,7 +7,7 @@
 #pragma pack(push, 1)
 typedef struct bmp {
     BmpHeader *header;
-    Pixel *data;
+    RGB *data;
 }
 #ifdef __linux__
     __attribute__((__packed__, aligned(1)))

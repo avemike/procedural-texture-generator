@@ -2,15 +2,15 @@
 #include <time.h>
 
 #include "../headers/bmp.h"
-#include "pixelType.h"
+#include "rgbType.h"
 //
 // Created by avemike on 16.01.2021.
 //
 
 
 // Return array of Pixels
-Pixel *createNoise(int width, int height) {
-    Pixel *data = (Pixel *) malloc(sizeof(Pixel) * width * height);
+RGB *createNoise(int width, int height) {
+    RGB *data = (RGB *) malloc(sizeof(RGB) * width * height);
 
     // random generator helpers
     int seed;

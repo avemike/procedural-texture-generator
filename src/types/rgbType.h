@@ -1,13 +1,13 @@
-#ifndef PIXEL_H_
-#define PIXEL_H_
+#ifndef RGB_H_
+#define RGB_H_
 
 #pragma pack(push, 1)
-typedef struct pixel {
+typedef struct RGBTag {
     unsigned char blue, green, red;
 }
 #ifdef __linux__
     __attribute__((__packed__, aligned(1)))
 #endif
-        Pixel;
+        RGB;
 #pragma pack(pop)
 #endif

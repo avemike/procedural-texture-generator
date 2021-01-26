@@ -2,11 +2,11 @@
 // Created by avemike on 17.01.2021.
 //
 #include "bmpType.h"
-#include "pixelType.h"
+#include "rgbType.h"
 #include "../headers/noise.h"
 
 // x1 < x2 and y1 < y2. pixelsNum gets modified
-int calcVal(int x1, int y1, int x2, int y2, int width, const Pixel* data, int *pixelsNum) {
+int calcVal(int x1, int y1, int x2, int y2, int width, const RGB *data, int *pixelsNum) {
     int val = 0;
     for (int y = y1; y <= y2; y++) {
         for (int x = x1; x <= x2; x++) {
@@ -16,9 +16,10 @@ int calcVal(int x1, int y1, int x2, int y2, int width, const Pixel* data, int *p
     }
     return val;
 }
+
 // Variable Factor adjust how blured is image
-Pixel *createBluredNoise(int width, int height, int blur) {
-    Pixel *data = createNoise(width, height);
+RGB *createBluredNoise(int width, int height, int blur) {
+    RGB *data = createNoise(width, height);
 
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {

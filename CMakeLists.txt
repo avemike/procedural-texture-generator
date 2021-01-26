@@ -11,7 +11,7 @@ add_executable(projekt
         src/headers/bmp.h
         src/types/bmpType.h
         src/types/bmpHeaderType.h
-        src/types/pixelType.h
+        src/types/rgbType.h
         src/main.c
         src/headers/noise.h
         src/modules/noise.c
@@ -21,4 +21,4 @@ add_executable(projekt
         src/headers/smoothNoise.h
         src/headers/turbulence.h
         src/modules/turbulence.c
-        src/modules/texture.c src/headers/texture.h)
+        src/modules/texture.c src/headers/texture.h src/utils/textureToBlue.c src/headers/textureToBlue.h src/utils/hsl.c src/headers/hsl.h src/utils/textureLight.c src/headers/textureLight.h src/types/hslType.h)

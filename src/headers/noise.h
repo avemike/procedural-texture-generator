@@ -5,7 +5,7 @@
 #ifndef PROJEKT_NOISE_H
 #define PROJEKT_NOISE_H
 
-Pixel *createNoise(int width, int height);
+RGB *createNoise(int width, int height);
 double *noisePattern(int width, int height);
 
 #endif //PROJEKT_NOISE_H
