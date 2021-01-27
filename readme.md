@@ -2,7 +2,8 @@
 
 ### Features Todo:
 - [x] Turbulence
-- [ ] Clouds
+- [x] Clouds
+  - [ ] Refactor HSL functions - make them work with 0..1 instead of 0..255
 - [ ] Marble
 - [ ] Wood
 

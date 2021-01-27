@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.19)
 project(projekt C)
 
 set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_FLAGS "-lm")
 
 include_directories(src/modules)
 include_directories(src/types)
@@ -21,4 +22,4 @@ add_executable(projekt
         src/headers/smoothNoise.h
         src/headers/turbulence.h
         src/modules/turbulence.c
-        src/modules/texture.c src/headers/texture.h src/utils/textureToBlue.c src/headers/textureToBlue.h src/utils/hsl.c src/headers/hsl.h src/utils/textureLight.c src/headers/textureLight.h src/types/hslType.h)
+        src/modules/texture.c src/headers/texture.h src/utils/textureToBlue.c src/headers/textureToBlue.h src/utils/hsl.c src/headers/hsl.h src/utils/textureLight.c src/headers/textureLight.h src/types/hslType.h src/textures/cloud.c src/headers/cloud.h)
