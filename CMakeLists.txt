@@ -22,4 +22,4 @@ add_executable(projekt
         src/headers/smoothNoise.h
         src/headers/turbulence.h
         src/modules/turbulence.c
-        src/modules/texture.c src/headers/texture.h src/utils/textureToBlue.c src/headers/textureToBlue.h src/utils/hsl.c src/headers/hsl.h src/utils/textureLight.c src/headers/textureLight.h src/types/hslType.h src/textures/cloud.c src/headers/cloud.h src/textures/marble.c src/headers/marble.h)
+        src/modules/texture.c src/headers/texture.h src/utils/textureToBlue.c src/headers/textureToBlue.h src/utils/hsl.c src/headers/hsl.h src/utils/textureLight.c src/headers/textureLight.h src/types/hslType.h src/textures/cloud.c src/headers/cloud.h src/textures/marble.c src/headers/marble.h src/textures/wood.c src/headers/wood.h)
