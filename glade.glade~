@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <object class="GtkAdjustment" id="adjustment1_hRepeat1">
+    <property name="lower">1</property>
+    <property name="upper">16</property>
+    <property name="value">5</property>
+    <property name="step-increment">0.5</property>
+    <property name="page-increment">4</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment1_layers">
+    <property name="lower">1</property>
+    <property name="upper">16</property>
+    <property name="value">1</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">4</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment1_vRepeat">
+    <property name="lower">1</property>
+    <property name="upper">16</property>
+    <property name="value">5</property>
+    <property name="step-increment">0.5</property>
+    <property name="page-increment">4</property>
+  </object>
+  <object class="GtkListStore" id="liststore1">
+    <columns>
+      <!-- column-name Textures -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0">Clouds</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Wood</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Marble</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkWindow">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="width-request">512</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="ypad">4</property>
+            <property name="label" translatable="yes">Procedural Texture generator</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="width-request">512</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+            <property name="baseline-position">top</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="width-request">512</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="width-request">256</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="double-buffered">False</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="height-request">64</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="spacing">2</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="width-request">128</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Choose texture</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox">
+                            <property name="width-request">164</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="double-buffered">False</property>
+                            <property name="model">liststore1</property>
+                            <property name="active">1</property>
+                            <child>
+                              <object class="GtkCellRendererText"/>
+                              <attributes>
+                                <attribute name="visible">0</attribute>
+                                <attribute name="alignment">0</attribute>
+                                <attribute name="background">0</attribute>
+                                <attribute name="family">0</attribute>
+                                <attribute name="font">0</attribute>
+                                <attribute name="foreground">0</attribute>
+                                <attribute name="markup">0</attribute>
+                                <attribute name="single-paragraph-mode">0</attribute>
+                                <attribute name="text">0</attribute>
+                                <attribute name="width-chars">0</attribute>
+                                <attribute name="wrap-width">0</attribute>
+                                <attribute name="background-rgba">0</attribute>
+                                <attribute name="foreground-rgba">0</attribute>
+                                <attribute name="max-width-chars">0</attribute>
+                                <attribute name="placeholder-text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="height-request">96</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="height-request">48</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Horizontal Repeat</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkScale">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="margin-start">8</property>
+                            <property name="margin-end">8</property>
+                            <property name="adjustment">adjustment1_hRepeat1</property>
+                            <property name="round-digits">1</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="height-request">96</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="height-request">48</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Vertical Repeat</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkScale">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="margin-start">8</property>
+                            <property name="margin-end">8</property>
+                            <property name="adjustment">adjustment1_vRepeat</property>
+                            <property name="round-digits">1</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="height-request">96</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="height-request">48</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Layers (1-16)</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkScale" id="1">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="margin-start">8</property>
+                            <property name="margin-end">8</property>
+                            <property name="adjustment">adjustment1_layers</property>
+                            <property name="fill-level">16</property>
+                            <property name="round-digits">1</property>
+                            <property name="digits">0</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkImage">
+                    <property name="width-request">256</property>
+                    <property name="height-request">256</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <property name="stock">gtk-missing-image</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

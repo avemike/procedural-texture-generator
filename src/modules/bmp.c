@@ -48,8 +48,8 @@ void saveBMP(const char *bmpFileOut, BMP *bmpInstance) {
         for (int i = 0; i < padding; i++) {
             fwrite(&pad, 1, 1, fp);
         }
-
     }
+
     fclose(fp);
 }
 
@@ -65,6 +65,12 @@ BmpHeader *generateBMPHeader(unsigned int width, unsigned int height) {
     header->DIBHeaderSize = 40;
     header->bitsPerPixel = 24;
     header->biImageByteSize = width * height * 3;
+    header->biPlanes = 0;
+    header->biCompression = 0;
+    header->biXPixPerMeter = 0;
+    header->biYPixPerMeter = 0;
+    header->biClrUsed = 0;
+    header->biClrImportant = 0;
 
     return header;
 }

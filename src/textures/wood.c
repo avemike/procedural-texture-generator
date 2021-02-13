@@ -6,7 +6,7 @@
 #include "../headers/texture.h"
 #include "../headers/turbulence.h"
 
-RGB *generateWood(int width, int height, int layers) {
+RGB *generateWood(const int width, const int height, const int layers) {
     int size = pow(2, layers);
 
     double *pattern = turbulencePattern(width, height, size);
