@@ -5,9 +5,9 @@
 - [x] Clouds
   - [ ] Refactor HSL functions - make them work with 0..1 instead of 0..255
 - [x] Marble
-- [ ] Wood
+- [x] Wood
 - [ ] Fix: saving file with padding
-- [ ] GTK
+- [x] GTK
 
 ### Optional Todo:
 - [ ] 3D Noise
@@ -17,3 +17,10 @@
 ### Refactor Todo: 
 - [ ] make indexer for RGB/HSL type
 - [x] make modular noises
+- [ ] put handlers in separate directory
+- [ ] separate ui logic
+
+### Conventions
+- _Pattern_ is an array of values in type double in range 0..1. It helps with representing image pixel data in black and white.
+- _Texture_ is an array of values in type RGB.
+  - RGB is structure of unsigned chars { red, blue, green }

@@ -2,6 +2,7 @@
 // Created by avemike on 28.01.2021.
 //
 #include <math.h>
+
 #include "../headers/wood.h"
 #include "../headers/texture.h"
 #include "../headers/turbulence.h"
@@ -10,7 +11,6 @@ RGB *generateWood(const int width, const int height, const int layers, double re
     int size = pow(2, layers);
 
     double *pattern = turbulencePattern(width, height, size);
-
     RGB *texture = generateBMPTexture(pattern, width, height);
 
     for (int i = 0; i < width * height; i++) {
@@ -24,7 +24,6 @@ RGB *generateWood(const int width, const int height, const int layers, double re
         texture[i].green = 40 + sinVal;
         texture[i].blue = 30;
     }
-
 
     return texture;
 }

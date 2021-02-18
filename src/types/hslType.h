@@ -3,7 +3,7 @@
 
 #pragma pack(push, 1)
 typedef struct HSLTag {
-    unsigned char H, S, L;
+    unsigned char hue, saturation, lightness;
 }
 #ifdef __linux__
     __attribute__((__packed__, aligned(1)))

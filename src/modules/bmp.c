@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "bmpType.h"
+
+// @todo: fix padding
 
 BMP *loadBMP(const char *bmpFileIn) {
     FILE *fp = NULL;
@@ -81,4 +84,3 @@ BMP *generateBMPFile(RGB *data, unsigned int width, unsigned int height) {
     image->data = data;
     return image;
 }
-

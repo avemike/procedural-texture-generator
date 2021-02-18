@@ -1,7 +1,6 @@
 #ifndef BMPHEADER_H_
 #define BMPHEADER_H_
 
-typedef unsigned char byte;
 typedef signed char si1B;
 typedef signed short si2B;
 typedef signed int si4B;

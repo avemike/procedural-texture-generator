@@ -3,12 +3,9 @@
 #ifndef _BMP_MODULE_
 #define _BMP_MODULE_
 
-BMP *loadBMP(const char *bmpFileIn);
-
 void saveBMP(const char *bmpFileOut, BMP *bmpInstance);
-
+void loadBMP(const char *bmpFileOut);
 BmpHeader *generateBMPHeader(unsigned int width, unsigned int height);
-
 BMP *generateBMPFile(RGB *data, unsigned int width, unsigned int height);
 
 #endif

@@ -1,15 +1,10 @@
-//
-// Created by avemike on 27.01.2021.
-//
+#include <math.h>
 
 #include "../headers/marble.h"
-#include <math.h>
-#include "../headers/cloud.h"
-#include "../types/hslType.h"
+#include "../headers/clouds.h"
 #include "../headers/hsl.h"
 #include "../headers/turbulence.h"
 #include "../headers/texture.h"
-#include <stdio.h>
 
 RGB *generateMarble(int width, int height, int layers, double yRepetitionFactor, double xRepetitionFactor, double twistFactor) {
     int size = pow(2, layers);
@@ -27,5 +22,4 @@ RGB *generateMarble(int width, int height, int layers, double yRepetitionFactor,
     RGB *texture = generateBMPTexture(pattern, width, height);
 
     return texture;
-
 }

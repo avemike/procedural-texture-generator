@@ -19,7 +19,7 @@
 #include <stdlib.h>
 #include "headers/wood.h"
 #include "headers/marble.h"
-#include "headers/cloud.h"
+#include "headers/clouds.h"
 #include "headers/texture.h"
 #include "headers/bmp.h"
 
@@ -33,7 +33,7 @@ void genFile(char *fileName) {
     double hRepeatVal = gtk_adjustment_get_value(adj_hRepeat);
     double repeatVal = gtk_adjustment_get_value(adj_repeat);
     double twistFactor = gtk_adjustment_get_value(adj_twist);
-    int harmonicsVal = 8 - gtk_adjustment_get_value(adj_harmonics);
+    int harmonicsVal = (int)(gtk_adjustment_get_upper(adj_harmonics) - gtk_adjustment_get_value(adj_harmonics));
     const char* textureType = gtk_stack_get_visible_child_name(stack_textureType);
 
     const int width = 256;

@@ -1,22 +1,18 @@
-//
-// Created by avemike on 19.01.2021.
-//
 #include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
+
 #include "../headers/turbulence.h"
 #include "../headers/smoothNoise.h"
-#include "../headers/noise.h"
+#include "../headers/randomNoisePattern.h"
 
 double *turbulencePattern(int width, int height, int size) {
     double *outputPattern = (double *) malloc(sizeof(double) * width * height);
     memset(outputPattern, 0, sizeof(double) * width * height);
-    double *startingNoisePattern = noisePattern(width, height);
+    double *startingNoisePattern = randomNoisePattern(width, height);
 
     for (int i = 0; i < width * height; i++) {
         int x = i % width;
         int y = (int) i / width;
-
 
         double sizeCounter = size;
         while (sizeCounter >= 1) {
@@ -25,9 +21,7 @@ double *turbulencePattern(int width, int height, int size) {
                     size;
             sizeCounter /= 2;
         }
-
     }
 
     return outputPattern;
-
 }
