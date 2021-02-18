@@ -3,6 +3,7 @@
 //
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "../headers/turbulence.h"
 #include "../headers/smoothNoise.h"
 #include "../headers/noise.h"
@@ -19,10 +20,14 @@ double *turbulencePattern(int width, int height, int size) {
 
         double sizeCounter = size;
         while (sizeCounter >= 1) {
-            outputPattern[i] += 128 * smooth(startingNoisePattern, x / sizeCounter, y / sizeCounter, width, height) * sizeCounter / size;
+            outputPattern[i] +=
+                    128 * smooth(startingNoisePattern, x / sizeCounter, y / sizeCounter, width, height) * sizeCounter /
+                    size;
             sizeCounter /= 2;
         }
+
     }
 
     return outputPattern;
+
 }

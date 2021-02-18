@@ -2,6 +2,7 @@
 // Created by avemike on 27.01.2021.
 //
 #include <math.h>
+
 #include "../headers/cloud.h"
 #include "../types/hslType.h"
 #include "../headers/hsl.h"

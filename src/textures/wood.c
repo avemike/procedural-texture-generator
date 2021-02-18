@@ -6,13 +6,10 @@
 #include "../headers/texture.h"
 #include "../headers/turbulence.h"
 
-RGB *generateWood(const int width, const int height, const int layers) {
+RGB *generateWood(const int width, const int height, const int layers, double repetitionFactor, double twistFactor) {
     int size = pow(2, layers);
 
     double *pattern = turbulencePattern(width, height, size);
-
-    double twistFactor = 1;
-    double repetitionFactor = 16;
 
     RGB *texture = generateBMPTexture(pattern, width, height);
 

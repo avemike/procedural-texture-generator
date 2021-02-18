@@ -16,105 +16,91 @@
 */
 
 #include <gtk/gtk.h>
+#include <stdlib.h>
 #include "headers/wood.h"
 #include "headers/marble.h"
 #include "headers/cloud.h"
 #include "headers/texture.h"
 #include "headers/bmp.h"
 
-static
-void makeWood(GtkWidget *widget,
-                     gpointer data) {
+GtkBuilder *builder;
+GtkAdjustment *adj_vRepeat, *adj_hRepeat, *adj_repeat, *adj_harmonics, *adj_twist;
+GtkStack *stack_textureType;
+GtkImage *img_preview;
+
+void genFile(char *fileName) {
+    double vRepeatVal = gtk_adjustment_get_value(adj_vRepeat);
+    double hRepeatVal = gtk_adjustment_get_value(adj_hRepeat);
+    double repeatVal = gtk_adjustment_get_value(adj_repeat);
+    double twistFactor = gtk_adjustment_get_value(adj_twist);
+    int harmonicsVal = 8 - gtk_adjustment_get_value(adj_harmonics);
+    const char* textureType = gtk_stack_get_visible_child_name(stack_textureType);
+
     const int width = 256;
     const int height = 256;
-    const int size = 4;
+    RGB *texture = NULL;
 
-    RGB *texture = generateWood(width, height, size);
+    // Check texture type
+    if (strcmp(textureType, "Marble") == 0) {
+        texture = generateMarble(width, height, harmonicsVal, vRepeatVal, hRepeatVal, twistFactor);
+    }
+    else if (strcmp(textureType, "Clouds") == 0) {
+        texture = generateCloud(width, height, harmonicsVal);
+    }
+    else if (strcmp(textureType, "Wood") == 0) {
+        texture = generateWood(width, height, harmonicsVal, repeatVal, twistFactor);
+    }
+
     BMP *file = generateBMPFile(texture, width, height);
-    saveBMP("temp.bmp", file);
+
+    saveBMP(fileName, file);
 }
 
-static
-void makeClouds(GtkWidget *widget,
-                     gpointer data) {
-    const int width = 256;
-    const int height = 256;
-    const int size = 5;
-
-    RGB *texture = generateCloud(width, height, size);
-    BMP *file = generateBMPFile(texture, width, height);
-    saveBMP("temp.bmp", file);
+void updateImage(char *fileName) {
+    genFile(fileName);
+    gtk_image_set_from_file(img_preview, fileName);
+}
+void btn_clicked_save () {
+    updateImage("output.bmp");
 }
 
-static
-void makeMarble(GtkWidget *widget,
-                      gpointer data) {
-    const int width = 256;
-    const int height = 256;
-    const int size = 6;
-
-    RGB *texture = generateMarble(width, height, size);
-    BMP *file = generateBMPFile(texture, width, height);
-    saveBMP("temp.bmp", file);
+void change_modifier() {
+    updateImage("_temp.bmp");
 }
 
-static void
-activate(GtkApplication *app,
-         gpointer user_data) {
+void on_main_window_destroy() {
+    gtk_main_quit();
+}
+
+int main (int argc, char *argv[])
+{
     GtkWidget *window;
-    GtkWidget *grid;
-    GtkWidget *button;
-    GtkWidget *entry;
 
-    window = gtk_application_window_new(app);
-    gtk_window_set_title(GTK_WINDOW (window), "Window");
-    gtk_container_set_border_width(GTK_CONTAINER (window), 10);
+    gtk_init(&argc, &argv);
 
-    grid = gtk_grid_new();
+    builder = gtk_builder_new();
+    gtk_builder_add_from_file (builder, "glade.glade", NULL);
 
-    gtk_container_add(GTK_CONTAINER (window), grid);
+    window = GTK_WIDGET(gtk_builder_get_object(builder, "main_window"));
+    gtk_builder_connect_signals(builder, NULL);
 
-    entry = gtk_entry_new();
-    gtk_grid_attach(GTK_GRID (grid), entry, 0, 0, 1, 1);
+    // SLIDERS WIDGETS
+    adj_harmonics = GTK_ADJUSTMENT(gtk_builder_get_object(builder, "adjustment1_layers"));
+    adj_vRepeat = GTK_ADJUSTMENT(gtk_builder_get_object(builder, "adjustment1_vRepeat"));
+    adj_hRepeat = GTK_ADJUSTMENT(gtk_builder_get_object(builder, "adjustment1_hRepeat1"));
+    adj_repeat = GTK_ADJUSTMENT(gtk_builder_get_object(builder, "adjustment1_repeat"));
+    adj_twist = GTK_ADJUSTMENT(gtk_builder_get_object(builder, "adjustment1_twist"));
 
-    entry = gtk_entry_new();
-    gtk_grid_attach(GTK_GRID (grid), entry, 2, 0, 1, 1);
+    // STACK TEXTURE CONTROL
+    stack_textureType = GTK_STACK(gtk_builder_get_object(builder, "stack_texture"));
 
-    button = gtk_button_new_with_label("Clouds");
-    g_signal_connect (button, "clicked", G_CALLBACK(makeClouds), NULL);
+    // IMAGE LIVE PREVIEW
+    img_preview = GTK_IMAGE(gtk_builder_get_object(builder, "img_preview"));
 
-    gtk_grid_attach(GTK_GRID (grid), button, 0, 1, 1, 1);
+    g_object_unref(builder);
 
-    button = gtk_button_new_with_label("Marble");
-    g_signal_connect (button, "clicked", G_CALLBACK(makeMarble), NULL);
+    gtk_widget_show(window);
+    gtk_main();
 
-    gtk_grid_attach(GTK_GRID (grid), button, 1, 1, 1, 1);
-
-
-    button = gtk_button_new_with_label("Wood");
-    g_signal_connect (button, "clicked", G_CALLBACK(makeWood), NULL);
-
-    gtk_grid_attach(GTK_GRID (grid), button, 2, 1, 1, 1);
-
-    button = gtk_button_new_with_label("Quit");
-    g_signal_connect_swapped (button, "clicked", G_CALLBACK(gtk_widget_destroy), window);
-
-    gtk_grid_attach(GTK_GRID (grid), button, 0, 2, 2, 1);
-
-    gtk_widget_show_all(window);
-
-}
-
-int
-main(int argc,
-     char **argv) {
-    GtkApplication *app;
-    int status;
-
-    app = gtk_application_new("org.gtk.example", G_APPLICATION_FLAGS_NONE);
-    g_signal_connect (app, "activate", G_CALLBACK(activate), NULL);
-    status = g_application_run(G_APPLICATION (app), argc, argv);
-    g_object_unref(app);
-
-    return status;
+    return 0;
 }

@@ -1,8 +1,11 @@
-cmake_minimum_required(VERSION 3.19)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 project(PTG)
 
+FIND_PACKAGE(PkgConfig REQUIRED)
+PKG_CHECK_MODULES(GTK3 REQUIRED gtk+-3.0)
+
 set(CMAKE_C_STANDARD 11)
-set(CMAKE_C_FLAGS "-lm")  # for math.h
+set(CMAKE_EXE_LINKER_FLAGS "-rdynamic")
 
 ADD_EXECUTABLE(PTG
         src/modules/bmp.c
@@ -19,9 +22,9 @@ ADD_EXECUTABLE(PTG
         src/headers/smoothNoise.h
         src/headers/turbulence.h
         src/modules/turbulence.c
-        src/modules/texture.c src/headers/texture.h src/utils/textureToBlue.c src/headers/textureToBlue.h src/utils/hsl.c src/headers/hsl.h src/utils/textureLight.c src/headers/textureLight.h src/types/hslType.h src/textures/cloud.c src/headers/cloud.h src/textures/marble.c src/headers/marble.h src/textures/wood.c src/headers/wood.h)
-
-
+        src/modules/texture.c
+        src/headers/texture.h src/utils/textureToBlue.c src/headers/textureToBlue.h src/utils/hsl.c src/headers/hsl.h src/utils/textureLight.c src/headers/textureLight.h src/types/hslType.h src/textures/cloud.c src/headers/cloud.h src/textures/marble.c src/headers/marble.h src/textures/wood.c src/headers/wood.h
+        )
 # ---- GTK SETUP ----
 FIND_PACKAGE(PkgConfig REQUIRED)
 PKG_CHECK_MODULES(GTK REQUIRED gtk+-3.0)
@@ -30,9 +33,7 @@ INCLUDE_DIRECTORIES(${GTK_INCLUDE_DIRS})
 LINK_DIRECTORIES(${GTK_LIBRARY_DIRS})
 ADD_DEFINITIONS(${GTK_CFLAGS_OTHER})
 
-TARGET_LINK_LIBRARIES(PTG ${GTK_LIBRARIES})
-# ---- -----
-
 include_directories(src/modules)
 include_directories(src/types)
 
+TARGET_LINK_LIBRARIES(PTG -lm ${LIBS} ${GTK_LIBRARIES})
