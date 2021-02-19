@@ -19,13 +19,14 @@
 // and saturation will be max (255)
 // Now we need only to extract lightness factor from each pixel by conversion
 RGB *generateCloud(int width, int height, int layers) {
-    int size = pow(2, layers);
+    int size = pow(2, (double) layers);
     double *pattern = turbulencePattern(width, height, size);
     RGB *texture = generateBMPTexture(pattern, width, height);
+
     for(int i = 0; i < width * height; i++) {
-        unsigned char L = (int)192 + (texture[i].red / 4);
-        HSL color = {HUE, SATURATION, L};
-        RGB colorOut = HSL2RGB(color);
+        unsigned char lightness = (int)192 + (texture[i].red / 4);
+        HSL color = {HUE, SATURATION, lightness};
+        RGB colorOut = HSL2RGB(color);  // Note: HSL2RGB takes color input in range 0..255.
         texture[i] = colorOut;
     }
     return texture;

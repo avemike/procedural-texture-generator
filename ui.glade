@@ -5,7 +5,7 @@
   <object class="GtkAdjustment" id="adjustment1_hRepeat1">
     <property name="lower">1</property>
     <property name="upper">16</property>
-    <property name="value">5</property>
+    <property name="value">2</property>
     <property name="step_increment">0.5</property>
     <property name="page_increment">4</property>
     <signal name="value-changed" handler="change_modifier" swapped="no"/>
@@ -13,7 +13,7 @@
   <object class="GtkAdjustment" id="adjustment1_layers">
     <property name="lower">1</property>
     <property name="upper">8</property>
-    <property name="value">6</property>
+    <property name="value">4</property>
     <property name="step_increment">1</property>
     <property name="page_increment">4</property>
     <signal name="value-changed" handler="change_modifier" swapped="no"/>
@@ -28,7 +28,7 @@
   </object>
   <object class="GtkAdjustment" id="adjustment1_twist">
     <property name="upper">8</property>
-    <property name="value">3</property>
+    <property name="value">2</property>
     <property name="step_increment">0.10000000000000001</property>
     <property name="page_increment">1</property>
     <signal name="value-changed" handler="change_modifier" swapped="no"/>
@@ -36,13 +36,14 @@
   <object class="GtkAdjustment" id="adjustment1_vRepeat">
     <property name="lower">1</property>
     <property name="upper">16</property>
-    <property name="value">5</property>
+    <property name="value">2</property>
     <property name="step_increment">0.5</property>
     <property name="page_increment">4</property>
     <signal name="value-changed" handler="change_modifier" swapped="no"/>
   </object>
   <object class="GtkWindow" id="main_window">
     <property name="can_focus">False</property>
+    <property name="default_width">622</property>
     <signal name="destroy" handler="on_main_window_destroy" swapped="no"/>
     <child type="titlebar">
       <placeholder/>
@@ -238,7 +239,6 @@
                                         <property name="margin_end">8</property>
                                         <property name="adjustment">adjustment1_vRepeat</property>
                                         <property name="round_digits">1</property>
-                                        <signal name="change-value" handler="change_vRepeat" swapped="no"/>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -387,6 +387,28 @@
                                 <property name="can_focus">False</property>
                                 <property name="orientation">vertical</property>
                                 <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="halign">baseline</property>
+                                    <property name="valign">baseline</property>
+                                    <property name="margin_left">16</property>
+                                    <property name="margin_right">16</property>
+                                    <property name="margin_top">4</property>
+                                    <property name="margin_bottom">4</property>
+                                    <property name="label" translatable="yes">For wood it's recommended to use small factors like Twist Factor between 0 and 1, and harmonics under 4.</property>
+                                    <property name="justify">fill</property>
+                                    <property name="wrap">True</property>
+                                    <property name="xalign">0.5</property>
+                                    <property name="yalign">0.5</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
                                   <object class="GtkBox">
                                     <property name="height_request">96</property>
                                     <property name="visible">True</property>
@@ -428,7 +450,7 @@
                                   <packing>
                                     <property name="expand">False</property>
                                     <property name="fill">True</property>
-                                    <property name="position">0</property>
+                                    <property name="position">1</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -471,7 +493,7 @@
                                   <packing>
                                     <property name="expand">False</property>
                                     <property name="fill">True</property>
-                                    <property name="position">1</property>
+                                    <property name="position">2</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -514,7 +536,7 @@
                                   <packing>
                                     <property name="expand">False</property>
                                     <property name="fill">True</property>
-                                    <property name="position">2</property>
+                                    <property name="position">3</property>
                                   </packing>
                                 </child>
                               </object>
@@ -554,7 +576,6 @@
                         <property name="can_focus">False</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>
-                        <property name="pixbuf">temp.bmp</property>
                         <property name="icon_size">5</property>
                       </object>
                       <packing>

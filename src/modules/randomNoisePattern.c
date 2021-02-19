@@ -3,6 +3,7 @@
 
 #include "../headers/bmp.h"
 
+// Completely random noise pattern!
 // Returns array of doubles, each equal (0..1)
 double *randomNoisePattern(int width, int height) {
     double *texturePattern = (double *) malloc(width * height * sizeof(double));
@@ -13,7 +14,7 @@ double *randomNoisePattern(int width, int height) {
     srand(seed);
 
     for (int i = 0; i < height * width; i++)
-        texturePattern[i] = (rand() % 32768) / 32768.0;
+        texturePattern[i] = (double) rand() / RAND_MAX;
 
     return texturePattern;
 }

@@ -29,7 +29,7 @@ ADD_EXECUTABLE(procedural-texture-generator
         src/handlers/ui.c
 
         # Utils
-        src/utils/hsl.c)
+        src/utils/hsl.c src/globals.h)
 
 # ---- GTK SETUP ----
 PKG_CHECK_MODULES(GTK REQUIRED gtk+-3.0)

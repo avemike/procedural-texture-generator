@@ -1,22 +1,34 @@
+#include <math.h>
 #include "../headers/smoothNoise.h"
 
+double lerp(const double lo, const double hi, const double t) { return lo * (1 - t) + hi * t; }
+double smoothstep(const double t) { return t * t * (3 - 2 * t); }
+
 double smooth(const double *texture, double x, double y, int noiseWidth, int noiseHeight) {
-    double fractionX = x - (int) x;
-    double fractionY = y - (int) y;
+    int x0 = floor(x);
+    int y0 = floor(y);
 
-    //wrap around
-    int x1 = ((int) x + noiseWidth) % noiseWidth;
-    int y1 = ((int) y + noiseHeight) % noiseHeight;
+    double fractionX = x - x0;
+    double fractionY = y - y0;
 
-    //neighbor values
-    int x2 = (x1 + noiseWidth - 1) % noiseWidth;
-    int y2 = (y1 + noiseHeight - 1) % noiseHeight;
+    int x1 = (x0 + 1) % (noiseWidth - 1);
+    int y1 = (y0 + 1) % (noiseHeight - 1);
 
-    double value = 0.0;
-    value += fractionX * fractionY * (texture[y1 * noiseWidth + x1]);
-    value += (1 - fractionX) * fractionY * (texture[y1 * noiseWidth + x2]);
-    value += fractionX * (1 - fractionY) * (texture[y2 * noiseWidth + x1]);
-    value += (1 - fractionX) * (1 - fractionY) * (texture[y2 * noiseWidth + x2]);
+    // 01 - upper left      11 - upper right
+    // 00 - bottom left     10 - bottom right
+    const double val_00 = texture[y0 * (noiseWidth) + x0];
+    const double val_10 = texture[y0 * (noiseWidth) + x1];
+    const double val_01 = texture[y1 * (noiseWidth) + x0];
+    const double val_11 = texture[y1 * (noiseWidth) + x1];
 
-    return value;
+    // remapping of tx and ty using the Smoothstep function
+    double sx = smoothstep(fractionX);
+    double sy = smoothstep(fractionY);
+
+    // linearly interpolate values along the x axis
+    double nx0 = lerp(val_00, val_10, sx);
+    double nx1 = lerp(val_01, val_11, sx);
+
+    // linearly interpolate the nx0/nx1 along their y axis
+    return lerp(nx0, nx1, sy);
 }

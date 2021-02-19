@@ -17,13 +17,14 @@
 
 #include <gtk/gtk.h>
 #include <stdlib.h>
+
 #include "headers/wood.h"
 #include "headers/marble.h"
 #include "headers/clouds.h"
 #include "headers/texture.h"
 #include "headers/bmp.h"
 
-// GLOBAL: gtk widgets pointers
+// GLOBAL: GTK widgets pointers
 GtkWidget *window_main;
 GtkBuilder *builder;
 GtkAdjustment *adj_vRepeat, *adj_hRepeat, *adj_repeat, *adj_harmonics, *adj_twist;
@@ -37,7 +38,7 @@ int main (int argc, char *argv[])
 
     // Glade UI builder
     builder = gtk_builder_new();
-    gtk_builder_add_from_file (builder, "glade.glade", NULL);
+    gtk_builder_add_from_file (builder, "ui.glade", NULL);
 
     // Main Window
     window_main = GTK_WIDGET(gtk_builder_get_object(builder, "main_window"));

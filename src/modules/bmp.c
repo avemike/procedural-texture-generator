@@ -3,38 +3,7 @@
 
 #include "bmpType.h"
 
-// @todo: fix padding
-
-BMP *loadBMP(const char *bmpFileIn) {
-    FILE *fp = NULL;
-    BmpHeader bH;
-    RGB *pixels = NULL;
-
-    fp = fopen(bmpFileIn, "rb");
-
-    // Read header
-    fread(&bH, 54, 1, fp); // read full header
-
-    // Read bmp
-    pixels = malloc(sizeof(RGB) * bH.pixWidth * bH.pixHeight);
-
-    fseek(fp, bH.dataOffset, SEEK_SET);
-    int padding = abs((bH.pixWidth * 3) % 4);
-    for (int y = 0; y < bH.pixHeight; y++) {
-        for (int x = 0; x < bH.pixWidth; x++) {
-            fread(&pixels[(x + bH.pixWidth * y)], 1, 3, fp);
-        }
-        fseek(fp, padding, SEEK_CUR);
-    }
-
-    // Create BMP instance
-    BMP *output = (BMP *) malloc(sizeof(BMP));
-    output->data = pixels;
-    output->header = &bH;
-    fclose(fp);
-    return output;
-}
-
+// Simply saves bmp
 void saveBMP(const char *bmpFileOut, BMP *bmpInstance) {
     FILE *fp = NULL;
 
