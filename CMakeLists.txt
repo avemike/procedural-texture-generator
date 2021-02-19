@@ -6,13 +6,13 @@ FIND_PACKAGE(PkgConfig REQUIRED)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_EXE_LINKER_FLAGS "-rdynamic") # Glade needs this
 
-ADD_EXECUTABLE(procedural-texture-generator
+ADD_EXECUTABLE(${PROJECT_NAME}
         src/main.c
 
         # Headers
         src/headers/randomNoisePattern.h src/headers/hsl.h src/headers/wood.h src/headers/turbulence.h
         src/headers/clouds.h src/headers/marble.h src/headers/bmp.h
-        src/headers/smoothNoise.h src/headers/texture.h src/headers/ui.h
+        src/headers/smoothNoise.h src/headers/texture.h
 
         # Types
         src/types/bmpHeaderType.h src/types/bmpType.h
@@ -44,4 +44,4 @@ ADD_DEFINITIONS(${GTK_CFLAGS_OTHER})
 include_directories(src/modules)
 include_directories(src/types)
 
-TARGET_LINK_LIBRARIES(procedural-texture-generator -lm ${LIBS} ${GTK_LIBRARIES}) # -lm enables using math.h
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} -lm ${LIBS} ${GTK_LIBRARIES}) # -lm enables using math.h
