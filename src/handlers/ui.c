@@ -12,7 +12,7 @@ extern GtkBuilder *builder;
 extern GtkAdjustment *adj_vRepeat, *adj_hRepeat, *adj_repeat, *adj_harmonics, *adj_twist;
 extern GtkStack *stack_textureType;
 extern GtkImage *img_preview;
-
+extern GtkEntry *entry_filename;
 //
 void genFile(char *fileName) {
     // Gather input data from GTK Widgets
@@ -48,7 +48,14 @@ void updateImage() {
 }
 
 void btn_clicked_save () {
-    // @todo: rename working .bmp file
+    const char *filename = gtk_entry_get_text(entry_filename);
+
+    // Result is filename + .bmp
+    char *filenameWithExt = malloc(strlen(filename) + strlen(".bmp") + 1);
+    strcpy(filenameWithExt, filename);
+    strcat(filenameWithExt, ".bmp");
+
+    rename(WORKING_FILENAME, filenameWithExt);
 }
 
 // When user updates form inputs (sliders mostly...)

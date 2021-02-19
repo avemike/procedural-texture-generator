@@ -28,6 +28,7 @@
 GtkWidget *window_main;
 GtkBuilder *builder;
 GtkAdjustment *adj_vRepeat, *adj_hRepeat, *adj_repeat, *adj_harmonics, *adj_twist;
+GtkEntry *entry_filename;
 GtkStack *stack_textureType;
 GtkImage *img_preview;
 
@@ -56,6 +57,9 @@ int main (int argc, char *argv[])
 
     // IMAGE LIVE PREVIEW
     img_preview = GTK_IMAGE(gtk_builder_get_object(builder, "img_preview"));
+
+    // FILENAME ENTRY
+    entry_filename = GTK_ENTRY(gtk_builder_get_object(builder, "entry_filename"));
 
     g_object_unref(builder);
     gtk_widget_show(window_main);
